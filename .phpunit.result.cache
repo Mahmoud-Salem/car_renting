@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":255:{a:2:{s:7:"defects";a:1:{s:46:"CharacterizationTest::testMatchCurrentBehavior";i:4;}s:5:"times";a:3:{s:33:"BillingTest::testFirstExpectation";d:0.001;s:34:"BillingTest::testSecondExpectation";d:0;s:46:"CharacterizationTest::testMatchCurrentBehavior";d:0;}}}
