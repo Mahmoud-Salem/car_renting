@@ -19,33 +19,33 @@ class JsonFormat extends StatementFormat {
 
     public function __construct()
     {
-        $this->_statement = new stdObject();
+        $this->_statement = new \stdClass;
     }
     
     public function setName($name){
 
-        $this->_statement->name = "Rental Record for: ".$name ;
+        $this->_statement->name = $name ;
     }
 
     public function setRental($rental, $amount){
-        if(!$this->_statement->rentals)
+        if(!property_exists($this->_statement, 'rentals'))
         {
-            $this->_statement->rentals = array([]) ;
+            $this->_statement->rentals = array() ;
         }
-        array_push($this->_statement->rentals, $rental.getVehicle().getMakeAndModel() . "\"\tLE " . number_format($amount,2,'.',''));
+        array_push($this->_statement->rentals, $rental . " LE " . number_format($amount,2,'.',''));
     }
 
     public function setTotalAmount($totalAmount){
-        $this->_statement->totalAmount = "Amount owed is LE " . number_format($totalAmount,2,'.','') ;
+        $this->_statement->totalAmount = number_format($totalAmount,2,'.','') . " LE" ;
     }
 
     public function setRewardPoints($rewardPoints){
-        $this->_statement->rewardPoints = "You earned: " . $rewardPoints . " new Reward Points" ;
+        $this->_statement->rewardPoints = $rewardPoints . " new Reward Points" ;
     }
 
     public function printStatement(){
         $statement = json_encode($this->_statement);
-        $this->_statement = new stdObject();
+        $this->_statement = new \stdClass;
         return $statement;
     }
 
@@ -65,7 +65,7 @@ class TextFormat extends StatementFormat {
 
     public function setRental($rental, $amount){
 
-        $this->_statement .= "\t\"" . $rental->getVehicle()->getMakeAndModel() . "\"\tLE " .
+        $this->_statement .= "\t\"" . $rental . "\"\tLE " .
         number_format($amount,2,'.','') . "\n";
     }
 

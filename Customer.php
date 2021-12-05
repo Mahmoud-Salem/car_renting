@@ -53,7 +53,7 @@ class Customer
                 $rewardPoints = $eachRental->getVehicle()->getReward($rewardPoints,$eachRental->getDaysRented()) ;
 
             // Add rental to statement
-            $this->_statementFormat->setRental($eachRental, $amount);
+            $this->_statementFormat->setRental($eachRental->getVehicle()->getMakeAndModel(), $amount);
 
             $totalAmount += $amount;
         }
